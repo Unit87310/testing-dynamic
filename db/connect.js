@@ -1,5 +1,7 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
+const db = dbClient.db(process.env.DB_NAME || 'Cluster0');
+
 const uri = process.env.MONGODB_URI;
 let client;
 
