@@ -1,6 +1,15 @@
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+  throw new Error('MONGODB_URI is not defined in environment variables');
+}
+
+if (!uri.startsWith('mongodb')) {
+  throw new Error('Invalid MONGODB_URI format - must start with mongodb:// or mongodb+srv://');
+}
+
 let client;
 
 async function connectToDatabase() {
@@ -24,4 +33,4 @@ async function connectToDatabase() {
   }
 }
 
-module.exports = { connectToDatabase };  // Only export the function
+module.exports = { connectToDatabase };
